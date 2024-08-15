@@ -10,24 +10,23 @@ function ConvertHandler() {
       // check double fraction
       let chkFrac = num[0].split('/');
       console.log(chkFrac);
-      if (chkFrac.length > 2) {
-        result = 'invalid number'
-      } else {
+      if (chkFrac.length > 2) result = 'invalid number';
+
+      // catch errors (e.g. double decimal) on number input
+      try {
         result = eval(num.toString());
-      }
-      // if (eval(num.toString()) == NaN) throw new Error('invalid number');
-
-      // check NaN - multiple decimal
-      // result = parseFloat(chkFrac[0] || chkFrac[0]/chkFrac[1]);
-      // if (chkFrac.length == 1) result = eval(chkFrac[0])
-      // if (chkFrac.length == 2) result = parseFloat(chkFrac[0]/chkFrac[1])
-
-      // if (result == NaN) console.log('invalid number');
-      
-      // console.log(result);
+      } catch (e) {
+        if (e instanceof SyntaxError) {
+          result = 'invalid number';
+          console.warn('Error: '+e.message);
+        }
+      } 
     }
+    let answer = Math.round((result + Number.EPSILON)*100000)/100000;
+    if (answer == NaN) result = 'invalid number';
     console.log(result);
-    return result = Math.round((result + Number.EPSILON)*100000)/100000;
+    return result;
+    
   };
   
   this.getUnit = function(input) {
@@ -109,7 +108,7 @@ function ConvertHandler() {
     const galToL = 3.78541;
     const lbsToKg = 0.453592;
     const miToKm = 1.60934;
-    let result;
+    let result ;
 
     switch (initUnit) {
       case 'gal':
