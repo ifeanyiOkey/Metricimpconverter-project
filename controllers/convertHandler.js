@@ -10,23 +10,25 @@ function ConvertHandler() {
       // check double fraction
       let chkFrac = num[0].split('/');
       console.log(chkFrac);
-      if (chkFrac.length > 2) result = 'invalid number';
-
-      // catch errors (e.g. double decimal) on number input
-      try {
-        result = eval(num.toString());
-      } catch (e) {
-        if (e instanceof SyntaxError) {
-          result = 'invalid number';
-          console.warn('Error: '+e.message);
+      if (chkFrac.length > 2) {
+        result = 'invalid number';
+      } else {
+        // catch errors (e.g. double decimal) on number input
+        try {
+          result = eval(num.toString());
+        } catch (e) {
+          if (e instanceof SyntaxError) {
+            result = 'invalid number';
+            console.warn('Error: '+e.message);
+          }
         }
-      } 
+      }
+
+      let answer = Math.round((result + Number.EPSILON)*100000)/100000;
+      if (answer == NaN) result = 'invalid number';
+      console.log(result);
     }
-    let answer = Math.round((result + Number.EPSILON)*100000)/100000;
-    if (answer == NaN) result = 'invalid number';
-    console.log(result);
     return result;
-    
   };
   
   this.getUnit = function(input) {
