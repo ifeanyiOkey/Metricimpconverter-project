@@ -8,9 +8,9 @@ function ConvertHandler() {
 
     if (num != null) {
       // check double fraction
-      let chkFrac = num[0].split('/');
-      console.log(chkFrac);
-      if (chkFrac.length > 2) {
+      let fraction = num[0].split('/');
+      // console.log(fraction);
+      if (fraction.length > 2) {
         result = 'invalid number';
       } else {
         // catch errors (e.g. double decimal) on number input
@@ -99,7 +99,7 @@ function ConvertHandler() {
         result = 'pounds';
         break;
       case 'kg':
-        result = 'kilogram';
+        result = 'kilograms';
         break;
     }
     // console.log(result);
