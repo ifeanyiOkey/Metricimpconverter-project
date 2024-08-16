@@ -4,7 +4,7 @@ function ConvertHandler() {
     let result = 1;
     
     let num = input.match(/^[\d./]+/g);
-    // console.log(num.toString().match(/(\.)/));
+    // console.log(num);
 
     if (num != null) {
       // check double fraction
